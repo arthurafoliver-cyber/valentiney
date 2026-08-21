@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>muse ♡ your little corner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <svg class="logo-bow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 11C9.8 8.3 6.4 6.5 3 6.5v6.2c3.4 0 6.8 1.8 9 4.5 2.2-2.7 5.6-4.5 9-4.5V6.5c-3.4 0-6.8 1.8-9 4.5z"/>
+        <circle cx="12" cy="11.5" r="1.3"/>
+      </svg>
+      <span class="brand-name">muse</span>
+    </div>
+
+    <nav class="nav">
+      <p class="nav-label">main</p>
+      <a class="nav-item active" data-view="dashboard"><span class="nav-mark">♡</span>Dashboard</a>
+      <a class="nav-item" data-view="day"><span class="nav-mark">✦</span>My Day</a>
+      <a class="nav-item" data-view="tasks"><span class="nav-mark">✎</span>Tasks</a>
+      <a class="nav-item" data-view="calendar"><span class="nav-mark">❀</span>Calendar</a>
+      <a class="nav-item" data-view="classes"><span class="nav-mark">✧</span>Classes</a>
+      <a class="nav-item" data-view="notes"><span class="nav-mark">✎</span>Notes</a>
+
+      <p class="nav-label">personal</p>
+      <a class="nav-item" data-view="journal"><span class="nav-mark">♡</span>Journal</a>
+      <a class="nav-item" data-view="mood"><span class="nav-mark">☾</span>Mood</a>
+      <a class="nav-item" data-view="favorites"><span class="nav-mark">❋</span>Favorites</a>
+    </nav>
+
+    <div class="sidebar-deco" aria-hidden="true">✦ ♡ ✧</div>
+
+    <button class="side-clear" id="clearDataBtn" title="clear data">♡ clear data</button>
+
+    <div class="profile">
+      <div class="avatar profile-avatar" id="profileAvatar">♡</div>
+      <div class="profile-text">
+        <p class="profile-name" id="profileName" title="click to set your name"></p>
+        <p class="profile-status hand" id="profileStatus" title="click to set a status"></p>
+      </div>
+      <button class="icon-btn small logout-btn" id="logoutBtn" aria-label="sign out" title="sign out">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17 7l-5 5 5 5V7zM9 7L4 12l5 5V7z"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="globalSearch" placeholder="" autocomplete="off">
+      </div>
+      <div class="top-actions">
+        <span class="top-date" id="topDate"></span>
+        <button class="icon-btn" id="notifBtn" aria-label="notifications">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        </button>
+        <button class="icon-btn heart-btn" aria-label="favorites">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </button>
+        <div class="avatar small profile-avatar" id="topAvatar" title="">♡</div>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <section class="view active" id="view-dashboard">
+
+        <div class="greeting">
+          <div>
+            <h1 class="greet-title serif" id="greetTitle">good evening <span class="heart-accent">♡</span></h1>
+            <p class="greet-sub">here's your little corner of the internet.</p>
+            <p class="greet-date" id="greetDate"></p>
+          </div>
+          <button class="btn-label" id="addSomethingBtn">
+            <svg class="btn-plus" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>
+            add something
+          </button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card card" data-glyph="🎀">
+            <p class="stat-label">today's tasks</p>
+            <p class="stat-num serif" id="statTasks">8</p>
+            <p class="stat-sub" id="statTasksSub">3 left to finish</p>
+          </div>
+          <div class="stat-card card" data-glyph="✦">
+            <p class="stat-label">classes today</p>
+            <p class="stat-num serif" id="statClasses">3</p>
+            <p class="stat-sub" id="statClassesSub">next one at 10:00</p>
+          </div>
+          <div class="stat-card card" data-glyph="♡">
+            <p class="stat-label">done today</p>
+            <p class="stat-num serif" id="statDone">0</p>
+            <p class="stat-sub" id="statDoneSub">nothing yet ♡</p>
+          </div>
+          <div class="stat-card card" data-glyph="✧">
+            <p class="stat-label">current mood</p>
+            <p class="stat-num serif mood-now" id="moodNow">—</p>
+            <p class="stat-sub" id="moodSub">no mood logged yet</p>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+
+          <div class="card block-2">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title serif">little productivity check <span>♡</span></h2>
+                <p class="card-sub">your week, but make it cute.</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <div class="bars" id="weekBars"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title serif">up next <span class="tiny-bow">🎀</span></h2>
+            <div class="next-class">
+              <p class="next-class-name serif" id="nextClassName">Psychology</p>
+              <p class="next-class-meta" id="nextClassMeta">10:00 AM · Room 204</p>
+            </div>
+            <p class="card-sub reminders-sub">little reminders</p>
+            <ul class="reminders" id="reminderList"></ul>
+          </div>
+
+          <div class="card block-2">
+            <div class="card-head between">
+              <div>
+                <h2 class="card-title serif">today's little to-do list</h2>
+                <p class="card-sub" id="todoSub">6 little things</p>
+              </div>
+              <button class="mini-add" id="quickAddTask">+ add</button>
+            </div>
+            <ul class="task-list" id="dashTaskList"></ul>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title serif" id="miniCalTitle">august <span>♡</span></h2>
+                <p class="card-sub" id="miniCalDate"></p>
+              </div>
+            </div>
+            <div class="mini-cal">
+              <div class="cal-weekdays"><span>s</span><span>m</span><span>t</span><span>w</span><span>t</span><span>f</span><span>s</span></div>
+              <div class="cal-grid" id="miniCalGrid"></div>
+            </div>
+          </div>
+
+          <div class="card block-all">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title serif">how are we feeling?</h2>
+                <p class="card-sub">pick one, let it breathe.</p>
+              </div>
+            </div>
+            <div class="mood-row" id="moodRow">
+              <button class="mood-chip" data-mood="dreamy">♡ dreamy</button>
+              <button class="mood-chip" data-mood="focused">✦ focused</button>
+              <button class="mood-chip" data-mood="sleepy">☾ sleepy</button>
+              <button class="mood-chip" data-mood="chaotic">✧ chaotic</button>
+              <button class="mood-chip" data-mood="happy">❋ happy</button>
+            </div>
+            <p class="card-sub journal-sub">tiny thought of the day...</p>
+            <textarea class="journal-input" id="dashJournal"></textarea>
+            <button class="btn-label small" id="saveDashJournal">save ♡</button>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="view" id="view-day">
+        <div class="view-head">
+          <h1 class="view-title serif">my day <span>♡</span></h1>
+          <p class="view-sub" id="daySub"></p>
+        </div>
+        <div class="timeline" id="dayTimeline"></div>
+      </section>
+
+      <section class="view" id="view-tasks">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">tasks <span>♡</span></h1>
+            <p class="view-sub" id="tasksSub"></p>
+          </div>
+          <button class="btn-label" id="openTaskForm">+ new task</button>
+        </div>
+        <div class="task-form card" id="taskForm">
+          <input type="text" id="taskText">
+          <div class="task-form-row">
+            <input type="date" id="taskDate">
+            <select id="taskCat">
+              <option value="study">study</option>
+              <option value="homework">homework</option>
+              <option value="life">life</option>
+              <option value="self-care">self-care</option>
+              <option value="chores">chores</option>
+            </select>
+            <input type="time" id="taskTime">
+            <select id="taskPrio">
+              <option value="1">low</option>
+              <option value="2" selected>medium</option>
+              <option value="3">high</option>
+            </select>
+            <button class="btn-label small" id="submitTask">add it ♡</button>
+          </div>
+          <div class="repeat-row" id="taskRepeat">
+            <span class="repeat-hint">repeats every week on:</span>
+            <button type="button" class="daypick" data-day="0">sun</button>
+            <button type="button" class="daypick" data-day="1">mon</button>
+            <button type="button" class="daypick" data-day="2">tue</button>
+            <button type="button" class="daypick" data-day="3">wed</button>
+            <button type="button" class="daypick" data-day="4">thu</button>
+            <button type="button" class="daypick" data-day="5">fri</button>
+            <button type="button" class="daypick" data-day="6">sat</button>
+          </div>
+        </div>
+        <div class="filter-row" id="taskFilters">
+          <button class="filter-chip active" data-filter="all">all</button>
+          <button class="filter-chip" data-filter="open">to do</button>
+          <button class="filter-chip" data-filter="done">done</button>
+        </div>
+        <ul class="task-list big" id="fullTaskList"></ul>
+      </section>
+
+      <section class="view" id="view-calendar">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">calendar <span>♡</span></h1>
+            <p class="view-sub">plan the pretty little chaos.</p>
+          </div>
+          <div class="cal-nav">
+            <button class="icon-btn" id="calPrev" aria-label="previous month">‹</button>
+            <span class="cal-nav-title serif" id="calMonthTitle"></span>
+            <button class="icon-btn" id="calNext" aria-label="next month">›</button>
+          </div>
+        </div>
+        <div class="card full-cal-card">
+          <div class="cal-weekdays full"><span>sun</span><span>mon</span><span>tue</span><span>wed</span><span>thu</span><span>fri</span><span>sat</span></div>
+          <div class="cal-grid big" id="fullCalGrid"></div>
+        </div>
+        <div class="card day-events" id="dayEvents"></div>
+      </section>
+
+      <section class="view" id="view-classes">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">classes <span>♡</span></h1>
+            <p class="view-sub">mostly showing up, mostly.</p>
+          </div>
+          <button class="btn-label" id="openClassForm">+ add class</button>
+        </div>
+        <div class="task-form card" id="classForm">
+          <input type="text" id="className">
+          <div class="task-form-row">
+            <input type="time" id="classTime">
+            <input type="text" id="classRoom">
+            <select id="classDays" multiple size="3">
+              <option value="1">mon</option><option value="2">tue</option><option value="3">wed</option>
+              <option value="4">thu</option><option value="5">fri</option>
+            </select>
+            <button class="btn-label small" id="submitClass">add it ♡</button>
+          </div>
+        </div>
+        <div class="classes-grid" id="classesGrid"></div>
+      </section>
+
+      <section class="view" id="view-notes">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">notes <span>♡</span></h1>
+            <p class="view-sub">little thoughts, safely kept.</p>
+          </div>
+          <button class="btn-label" id="openNoteForm">+ new note</button>
+        </div>
+        <div class="task-form card" id="noteForm">
+          <input type="text" id="noteTitle">
+          <textarea id="noteText" rows="3" style="width:100%;border:none;background:transparent;font-family:inherit;resize:vertical;"></textarea>
+          <div style="text-align:right"><button class="btn-label small" id="submitNote">save note ♡</button></div>
+        </div>
+        <div class="notes-grid" id="notesGrid"></div>
+      </section>
+
+      <section class="view" id="view-journal">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">journal <span>♡</span></h1>
+            <p class="view-sub">for the brain, with love.</p>
+          </div>
+        </div>
+        <div class="card journal-card">
+          <textarea class="journal-input big" id="journalEntry"></textarea>
+          <div class="journal-actions">
+            <span class="journal-date" id="journalDate"></span>
+            <button class="btn-label small" id="saveJournal">save entry ♡</button>
+          </div>
+        </div>
+        <div class="journal-list" id="journalList"></div>
+      </section>
+
+      <section class="view" id="view-mood">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">mood <span>☾</span></h1>
+            <p class="view-sub">feelings are data too.</p>
+          </div>
+        </div>
+        <div class="card mood-card">
+          <p class="card-sub">how are we feeling right now?</p>
+          <div class="mood-row big" id="moodRowBig">
+            <button class="mood-chip" data-mood="dreamy">♡ dreamy</button>
+            <button class="mood-chip" data-mood="focused">✦ focused</button>
+            <button class="mood-chip" data-mood="sleepy">☾ sleepy</button>
+            <button class="mood-chip" data-mood="chaotic">✧ chaotic</button>
+            <button class="mood-chip" data-mood="happy">❋ happy</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2 class="card-title serif">mood history <span>♡</span></h2>
+          <ul class="mood-history" id="moodHistory"></ul>
+        </div>
+      </section>
+
+      <section class="view" id="view-favorites">
+        <div class="view-head">
+          <div>
+            <h1 class="view-title serif">favorites <span>❋</span></h1>
+            <p class="view-sub">things that feel like you.</p>
+          </div>
+          <button class="btn-label" id="openFavForm">+ add</button>
+        </div>
+        <div class="task-form card" id="favForm">
+          <input type="text" id="favText">
+          <button class="btn-label small" id="submitFav">keep it ♡</button>
+        </div>
+        <ul class="fav-list" id="favList"></ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<nav class="mobile-nav">
+  <button class="mnav-btn active" data-view="dashboard"><span class="mnav-icon">♡</span><span>home</span></button>
+  <button class="mnav-btn" data-view="tasks"><span class="mnav-icon">✎</span><span>tasks</span></button>
+  <button class="mnav-btn" data-view="calendar"><span class="mnav-icon">❀</span><span>calendar</span></button>
+  <button class="mnav-btn" data-view="journal"><span class="mnav-icon">♡</span><span>journal</span></button>
+  <button class="mnav-btn" data-view="mood"><span class="mnav-icon">☾</span><span>mood</span></button>
+</nav>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3 class="modal-title serif">add something cute <span>♡</span></h3>
+    <div class="modal-tabs">
+      <button class="mtab active" data-tab="task">task</button>
+      <button class="mtab" data-tab="note">note</button>
+      <button class="mtab" data-tab="reminder">reminder</button>
+    </div>
+    <form id="modalForm">
+      <div class="modal-fields" data-fields="task">
+        <input type="text" id="mTaskText" required>
+        <div class="modal-row">
+          <select id="mTaskCat">
+            <option value="study">study</option>
+            <option value="homework">homework</option>
+            <option value="life">life</option>
+            <option value="self-care">self-care</option>
+            <option value="chores">chores</option>
+          </select>
+          <input type="time" id="mTaskTime">
+          <select id="mTaskPrio">
+            <option value="1">low</option>
+            <option value="2" selected>medium</option>
+            <option value="3">high</option>
+          </select>
+        </div>
+        <input type="date" id="mTaskDate">
+        <div class="repeat-row" id="mTaskRepeat">
+          <span class="repeat-hint">or repeats every week on:</span>
+          <button type="button" class="daypick" data-day="0">sun</button>
+          <button type="button" class="daypick" data-day="1">mon</button>
+          <button type="button" class="daypick" data-day="2">tue</button>
+          <button type="button" class="daypick" data-day="3">wed</button>
+          <button type="button" class="daypick" data-day="4">thu</button>
+          <button type="button" class="daypick" data-day="5">fri</button>
+          <button type="button" class="daypick" data-day="6">sat</button>
+        </div>
+      </div>
+      <div class="modal-fields" data-fields="note" hidden>
+        <input type="text" id="mNoteTitle">
+        <textarea id="mNoteText" rows="3" style="width:100%;border:none;background:transparent;font-family:inherit;resize:vertical;"></textarea>
+      </div>
+      <div class="modal-fields" data-fields="reminder" hidden>
+        <input type="text" id="mReminderText">
+      </div>
+      <button type="submit" class="btn-label small" id="modalSubmit">add it ♡</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="editTaskModal">
+  <div class="modal-card">
+    <button class="modal-close" id="editTaskClose">✕</button>
+    <h3 class="modal-title serif">edit task <span>♡</span></h3>
+    <div class="edit-fields">
+      <input type="text" id="eTaskText">
+      <div class="modal-row">
+        <select id="eTaskCat">
+          <option value="study">study</option>
+          <option value="homework">homework</option>
+          <option value="life">life</option>
+          <option value="self-care">self-care</option>
+          <option value="chores">chores</option>
+        </select>
+        <input type="time" id="eTaskTime">
+        <select id="eTaskPrio">
+          <option value="0">none</option>
+          <option value="1">low</option>
+          <option value="2">medium</option>
+          <option value="3">high</option>
+        </select>
+      </div>
+      <input type="date" id="eTaskDate">
+      <div class="repeat-row" id="eTaskRepeat">
+        <span class="repeat-hint">repeats every week on:</span>
+        <button type="button" class="daypick" data-day="0">sun</button>
+        <button type="button" class="daypick" data-day="1">mon</button>
+        <button type="button" class="daypick" data-day="2">tue</button>
+        <button type="button" class="daypick" data-day="3">wed</button>
+        <button type="button" class="daypick" data-day="4">thu</button>
+        <button type="button" class="daypick" data-day="5">fri</button>
+        <button type="button" class="daypick" data-day="6">sat</button>
+      </div>
+      <button class="btn-label small" id="eTaskSave">save changes ♡</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editClassModal">
+  <div class="modal-card">
+    <button class="modal-close" id="editClassClose">✕</button>
+    <h3 class="modal-title serif">edit class <span>♡</span></h3>
+    <div class="edit-fields">
+      <input type="text" id="eClassName">
+      <div class="modal-row">
+        <input type="time" id="eClassTime">
+        <input type="text" id="eClassRoom">
+      </div>
+      <div class="repeat-row" id="eClassDays">
+        <span class="repeat-hint">meets on:</span>
+        <button type="button" class="daypick" data-day="0">sun</button>
+        <button type="button" class="daypick" data-day="1">mon</button>
+        <button type="button" class="daypick" data-day="2">tue</button>
+        <button type="button" class="daypick" data-day="3">wed</button>
+        <button type="button" class="daypick" data-day="4">thu</button>
+        <button type="button" class="daypick" data-day="5">fri</button>
+        <button type="button" class="daypick" data-day="6">sat</button>
+      </div>
+      <button class="btn-label small" id="eClassSave">save changes ♡</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editNoteModal">
+  <div class="modal-card">
+    <button class="modal-close" id="editNoteClose">✕</button>
+    <h3 class="modal-title serif">edit note <span>♡</span></h3>
+    <div class="edit-fields">
+      <input type="text" id="eNoteTitle">
+      <textarea id="eNoteText" rows="4" style="width:100%;border:none;background:transparent;font-family:inherit;resize:vertical;"></textarea>
+      <button class="btn-label small" id="eNoteSave">save changes ♡</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal" id="clearModal">
+  <div class="modal-card">
+    <button class="modal-close" id="clearModalClose">✕</button>
+    <h3 class="modal-title serif">clear data <span>♡</span></h3>
+    <p class="card-sub clear-intro">wipe just one little corner, or the whole thing.</p>
+    <div class="clear-sectors" id="clearSectors"></div>
+    <button class="btn-label small danger" id="clearEverything">clear everything ♡</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
